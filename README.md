@@ -1,7 +1,7 @@
 # Sistema Web com Multiplos templates
 ## Como Rodar
 - npm install ,para instalar as dependencias
-- npm run server
+- npm run serve
 
 ## Como Utilizar
 - Na parte superior , basta selecionar qual template deseja utilizar. Adicionando uma lógica é possivel salvar essa seleção no seu BDD.
