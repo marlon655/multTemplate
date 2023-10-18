@@ -41,7 +41,7 @@ export default{
     height: 500px;
     /* border: 2px solid #ccc; */
     position: relative;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 .product-item{
     position: absolute;

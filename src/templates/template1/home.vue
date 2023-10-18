@@ -1,13 +1,7 @@
 <template>
     <section class="banner">
         <div class="center">
-            <div class="banner-container">
-                <div class="banner-container-box">
-                    <div class="container-img">
-                        <img src="@/assets/quasarBanner.webp">
-                    </div>
-                </div>
-            </div>
+            <bigBanner />
         </div>
     </section>
 
@@ -24,16 +18,20 @@
                     <Produto /><!-- Recebe: valor, desc, img -->
                 </div>
             </div>
+            <div class="small-banner">
+                <smallBanner />
+            </div>
         </div>
     </section>
-    
 
 </template>
 <script>
 import Produto from '@/components/template1/produtos.vue';
+import smallBanner from '@/components/template1/BannerSmall.vue';
+import bigBanner from '@/components/template1/BannerBig.vue';
 export default{
     components:{
-        Produto
+        Produto, smallBanner, bigBanner
     }
 }
 </script>
@@ -51,37 +49,8 @@ export default{
 /* Banner */
 .banner{
     width: 100%;
-    position: relative;
+    margin-top: 20px;
 }
-.banner-container{
-    position: relative;
-    width: 100%;
-    max-width: 1280px;
-    padding-top: 20px;
-}
-.banner-container-box{
-    border: 1px solid #ccc;
-    position: relative;
-    width: 100%;
-    padding-top: calc((4/13) * 100%);
-}
-.container-img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-.container-img img{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
 /* Produtos */
 .produtos{
  margin-top: 20px;   
@@ -91,7 +60,13 @@ export default{
     overflow-y: hidden;
     width: 100%;
 }
+/* .product-row::-webkit-scrollbar{
+    height: 0;
+} */
 .product-container{
     display: flex;
+}
+.small-banner{
+    margin-top: 20px;
 }
 </style>
