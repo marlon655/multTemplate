@@ -15,6 +15,9 @@
                             O Combo Quasar Vision traz perfumação e frescor para te incentivar
                             a correr atrás de seus objetivos e ir além.
                         </p>
+                        <div class="box-buy">
+                            <button class="btn-buy">Compre Agora</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -34,9 +37,11 @@ export default{
 }
 .produtos{
     min-width: calc(100% / 4);
-    padding-top: 35%;
+    padding-top: 40%;
+    height: 500px;
     /* border: 2px solid #ccc; */
     position: relative;
+    margin-bottom: 20px;
 }
 .product-item{
     position: absolute;
@@ -64,6 +69,7 @@ export default{
     width: 100%;
     height: 50%;
     text-align: left;
+    position: relative;
 }
 .product-item-pad{
     padding: 0 2%;
@@ -107,5 +113,54 @@ export default{
     font-size: 14px;
     display: inline-block;
     width: 100%;
+}
+
+.box-buy{
+    background-color: rgba(255, 255,255, 0.8);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.btn-buy{
+    text-align: center;
+    background-color: #00a470;
+    border: none;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 2px solid #005e40;
+    border-right: 2px solid #005e40;
+    color: aliceblue;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    width:  90%;
+    height: 50px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1024px){
+    .produtos{
+        min-width: calc(100% / 3);
+        /* padding-top: 50%; */
+    }
+}
+@media screen and (max-width: 768px){
+    .produtos{
+        /* padding-top: 60%; */
+        min-width: calc(100% / 2);
+    }
+}
+@media screen and (max-width: 600px){
+    .produtos{
+        /* padding-top: 60%; */
+        min-width: 100%;
+    }
 }
 </style>

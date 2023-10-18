@@ -4,7 +4,7 @@
             <div class="banner-container">
                 <div class="banner-container-box">
                     <div class="container-img">
-                        <img src="@/assets/logo.png">
+                        <img src="@/assets/quasarBanner.webp">
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@ export default{
     border: 1px solid #ccc;
     position: relative;
     width: 100%;
-    padding-top: calc((4/15) * 100%);
+    padding-top: calc((4/13) * 100%);
 }
 .container-img{
     position: absolute;
