@@ -17,12 +17,12 @@ export default{
                 desktop: require('@/assets/smallbanner.webp'),
                 mobile: require('@/assets/smallbanner-mobile.webp')
             },
-            currentImageSize: 'desktop'
+            currentImageSize: 'mobile'
         }
     },
     created(){
         window.addEventListener('resize', this.handleResize);
-        this.handleResize;
+        this.handleResize();
     },
     destroyed(){
         window.removeEventListener('resize', this.handleResize);
@@ -38,7 +38,6 @@ export default{
     },
     computed:{
         currentImage(){
-            console.log(this.images[this.currentImageSize])
             return this.images[this.currentImageSize];
         }
     }

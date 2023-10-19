@@ -2,17 +2,11 @@
   <div id="app">
     <selectBar />
     <component :is="components[sharedModule.template.selected]" v-if="sharedModule.template.selected"/>
-    <!-- <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/sobre">Sobre</router-link>
-      <router-link to="/contato">Contato</router-link>
-      <router-link to="/selecao">Seleção</router-link>
-    </nav> 
-  <router-view/> -->
   </div>
 </template>
 
 <script>
+  import { markRaw } from 'vue';
   import sharedModule from './sharedModule';
   import Template1 from '@/templates/template1/NavBar.vue';
   import Template2 from '@/templates/template2/NavBar.vue';
@@ -24,7 +18,11 @@
     },
     data(){
       return{
-        components:{ Template1, Template2, Template3}
+        components:{
+                Template1: markRaw(Template1),
+                Template2: markRaw(Template2),
+                Template3: markRaw(Template3)
+            },
       }
     },  
     created(){

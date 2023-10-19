@@ -1,18 +1,21 @@
 <template>
-    <component v-if="sharedModule.template.selected" :is="components[sharedModule.template.selected]"/>
+  <component v-if="sharedModule.template.selected" :is="components[sharedModule.template.selected]" />
 </template>
 
 <script>
+import { markRaw } from 'vue';
 import sharedModule from '../sharedModule';
 import Template1 from "../templates/template1/home.vue";
 import Template2 from "../templates/template2/home.vue";
 import Template3 from "../templates/template3/home.vue";
 export default {
   name: 'HomeView',
-  data(){
+  data() {
     return{
       components:{
-        Template1, Template2, Template3
+        Template1: markRaw(Template1),
+        Template2: markRaw(Template2),
+        Template3: markRaw(Template3)
       },
     }
   },
