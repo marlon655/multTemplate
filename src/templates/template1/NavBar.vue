@@ -29,9 +29,7 @@
   <div class="center">
     <router-view />
   </div>
-
   <Footer />
-
 </template>
 
 <script>
@@ -132,6 +130,7 @@ nav {
 nav a {
   padding: 0 10px;
   color: white;
+  font-size: 18px;
   text-decoration: none;
 
 }</style>

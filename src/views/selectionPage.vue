@@ -1,3 +1,4 @@
+//Arquivo Desativado!
 <template>
     <div>
         <h2>Selecione um template</h2>
@@ -41,5 +42,3 @@ export default {
     }
 }
 </script>
-
-<style></style>

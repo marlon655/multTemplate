@@ -1,6 +1,10 @@
 <template>
     <div class="bar">
         <span>Selecione um template:</span>
+        <!-- Muda o valor do objeto global reativo 'template.selected' ,com base no valor
+            de uma option no select. Quando mudar a seleção, atribui o valor dessa seleção
+            ao 'template.selected' podendo ser acessado em qualquer lugar.
+         -->
         <select v-model="selected" @change="selectTemplate">
         <option :value="null" disabled>Selecione uma Opção</option>
         <option v-for="(option, index) in templates" v-bind:value="option.component">

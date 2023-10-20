@@ -6,17 +6,39 @@ class FooterService {
             title: 'Duvidas',
             links:[
                 {   
-                    desc:'Nossa história',
+                    desc:'Perguntas Frequentes',
                     adress: '#'
+                },
+                {
+                    desc:'Formas de pagamento',
+                    adress: '#'
+                },
+                {
+                    desc:'Frete e Entrega',
+                    adress: '#'
+                },
+                {
+                    desc:'troca e devoluções',
+                    adress:'#'
                 }
+
             ]
         },
         {
             id: 2,
             title: 'Institucional',
             links:[
+                {   
+                    desc:'Nossa história',
+                    adress: '#'
+                },
                 {
-
+                    desc:'Trabalhe conosco',
+                    adress: '#'
+                },
+                {
+                    desc:'Onde comprar',
+                    adress: '#'
                 }
             ]
         }
@@ -25,10 +47,6 @@ class FooterService {
   
     getLinks() {
       return this.links;
-    }
-  
-    getFlickById(id) {
-      return this.flicks.find((flick) => flick.id === id);
     }
   }
   

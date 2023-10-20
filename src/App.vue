@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     <selectBar />
+    <!--
+      Chama a navbar de um template ex:template1, com base no valor de template.selected, obtido por
+      TemplateSelector.vue na pasta templates. Navbar.vue é responsavel por renderizar o template com base na
+      sua rota.
+    -->
     <component :is="components[sharedModule.template.selected]" v-if="sharedModule.template.selected"/>
   </div>
 </template>
@@ -28,10 +33,11 @@
     created(){
       document.body.style.padding = 0;
       document.body.style.margin = 0;
-      // document.body.style.boxSizing = 'border-box';
       document.body.style.backgroundColor = '#fff';
     },
     computed:{
+      /* Retorna uma objeto de controle global reativo 'template.selected' que recebe um valor dinamicamente
+      atravez de TemplateSelector.vue na pasta templates */
       sharedModule(){
         return sharedModule;
       }

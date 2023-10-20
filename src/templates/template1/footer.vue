@@ -1,47 +1,27 @@
 <template>
     <footer>
         <div class="center">
-             
-            <!-- <div class="footer-content">
-                <div class="content">
-                    <h2>Duvidas</h2>
-                    <ul>
-                        <li><a href="#">Perguntas Frequentes</a></li>
-                        <li><a href="#">Formas de pagamento</a></li>
-                        <li><a href="#">Frete e Entrega</a></li>
-                        <li><a href="#">troca e devoluções</a></li>
-                    </ul>
-                </div>
-                <div class="content">
-                    <h2>Institucional</h2>
-                    <ul class="Institucional">
-                        <li><a href="#">Nossa história</a></li>
-                        <li><a href="#">Trabalhe conosco</a></li>
-                        <li><a href="#">Onde comprar</a></li>
-                    </ul>
-                </div>
-            </div> -->
-
             <div class="footer-content">
-                <div class="content">
-                    <h2>Duvidas</h2>
-                    <ul>
-                        <li><a href="#">Perguntas Frequentes</a></li>
-                        <li><a href="#">Formas de pagamento</a></li>
-                        <li><a href="#">Frete e Entrega</a></li>
-                        <li><a href="#">troca e devoluções</a></li>
-                    </ul>
-                </div>
-                <div class="content">
-                    <h2>Institucional</h2>
-                    <ul>
-                        <li><a href="#">Nossa história</a></li>
-                        <li><a href="#">Trabalhe conosco</a></li>
-                        <li><a href="#">Onde comprar</a></li>
-                    </ul>
-                </div>
-            </div>
 
+                <div class="content is-mobile" v-for="(section, index) in footer" :key="section.id">
+                    <h2 @click="showDetails(index)">{{ section.title }} +</h2>
+                    <ul v-if="indexOpen === index">
+                        <li v-for="link in section.links" :key="link.desc">
+                            <a :href="link.adress">{{ link.desc }}</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="content is-desktop" v-for="section in footer" :key="section.id">
+                    <h2>{{ section.title }}</h2>
+                    <ul>
+                        <li v-for="link in section.links" :key="link.desc">
+                            <a :href="link.adress">{{ link.desc }}</a>
+                        </li>
+                    </ul>
+                </div>
+            
+            </div>
             <div class="payments">
                 <div class="box-container">
                     <div class="box-container-img">
@@ -62,12 +42,21 @@
     </footer>
 </template>
 <script>
+import FooterService from '../../../services/footer.js';
+const footerService = new FooterService()
 export default{
     data(){
         return{
-            showList:{
-                duvidas: false,
-                instituicao: false
+            footer: footerService.getLinks(),
+            indexOpen: null
+        }
+    },
+    methods:{
+        showDetails(index){
+            if(this.indexOpen === index){
+                this.indexOpen = null;
+            }else{
+                this.indexOpen = index;
             }
         }
     }
@@ -152,6 +141,12 @@ footer {
     width: 100%;
     height: 100%;
 }
+.is-desktop{
+    display: block;
+}
+.is-mobile{
+    display: none;
+}
 @media screen and (max-width: 768px){
 .payments{
     display: inline-block;
@@ -168,7 +163,18 @@ footer {
     max-width: none;
 }
 .content h2{
+    cursor: pointer;
+    color: white;
     border-bottom: 1px solid black;
+}
+.content h2:hover{
+    color: black
+}
+.is-desktop{
+    display: none;
+}
+.is-mobile{
+    display: block;
 }
 }
 </style>
