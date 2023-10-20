@@ -9,13 +9,8 @@
         <!-- <div class="center"> -->
             <div class="product-row">
                 <div class="product-container">
-                    <Produto />
-                    <Produto />
-                    <Produto />
-                    <Produto />
-                    <Produto />
-                    <Produto />
-                    <Produto /><!-- Recebe: valor, desc, img -->
+
+                    <Produto v-for="item in perfume" :key="item.id" :item="item"/><!-- Recebe: valor, desc, img -->
                 </div>
             </div>
             <div class="small-banner">
@@ -28,9 +23,19 @@
 import Produto from '@/components/template1/produtos.vue';
 import smallBanner from '@/components/template1/BannerSmall.vue';
 import bigBanner from '@/components/template1/BannerBig.vue';
+import perfumesServices from '../../../services/perfumes.js';
+const PerfumesServices = new perfumesServices();
 export default {
     components: {
         Produto, smallBanner, bigBanner
+    },
+    data(){
+        return{
+            perfume: PerfumesServices.getPerfumes(),
+        }
+    },
+    created(){
+        console.log(this.perfume)
     }
 }
 </script>

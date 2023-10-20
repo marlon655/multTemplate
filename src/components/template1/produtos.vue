@@ -1,5 +1,5 @@
 <template>
-    <div class="produtos">
+<!--     <div class="produtos">
         <div class="product-item">
             <div class="product-item-formact">
                 <div class="product-item-image">
@@ -22,12 +22,34 @@
                 </div>
             </div>
         </div>
+    </div> -->
+
+    <div class="produtos">
+        <div class="product-item">
+            <div class="product-item-formact">
+                <div class="product-item-image">
+                    <img :src="item.front_img">
+                </div>
+                <div class="product-item-desc">
+                    <div class="product-item-pad">
+                        <span class="title">{{ item.title }}</span>
+                        <router-link to="#" class="item-link">{{ item.text_link }}</router-link>
+                        <span class="max-price">R$ {{ item.max_price }}</span>
+                        <span class="price">R$ {{ item.price }}</span>
+                        <p class="description-item">{{ item.desc_item }}</p>
+                        <div class="box-buy">
+                            <button class="btn-buy">Compre Agora</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 
 export default{
-
+    props:['item']
 }
 </script>
 <style scoped>
