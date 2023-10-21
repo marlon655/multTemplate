@@ -58,7 +58,7 @@ class PerfumeDB{
                 text_link:'Botica 214 Golden Gardênia Eau De Parfum 75ml',
                 price:'170,00',
                 max_price:'200,00',
-                desc_item:'',
+                desc_item:'O Botica 214 Golden Gardênia Eau De Parfum é uma fragrância sensual e marcante, que esbanja feminilidade e personalidade na intensidade certa para seus dias.',
                 front_img:'https://res.cloudinary.com/beleza-na-web/image/upload/w_500,f_auto,fl_progressive,q_auto:eco/v1/imagens/products/B47629/BOTICA-214-EDP-GOLDEN-GARDENIA-75ml_B47629.jpg',
                 images:[
                     {id: 1, src:'https://res.cloudinary.com/beleza-na-web/image/upload/w_500,f_auto,fl_progressive,q_auto:eco/v1/imagens/products/B47629/BOTICA-214-EDP-GOLDEN-GARDENIA-75ml_B47629.jpg'},
@@ -128,34 +128,33 @@ class PerfumeDB{
                 ]
                 
             },
-            /*{
+            {
                 id: 6,
-                title:'',
+                title:'212 Vip',
                 link:'',
-                text_link:'',
-                price:'',
-                max_price:'',
-                desc_item:'',
-                front_img:'',
+                text_link:'212 Vip Black Carolina Herrera',
+                price:'499,00',
+                max_price:'599,00',
+                desc_item:'212 VIP Black é o centro das atenções, todos os olhares se voltam para ele. É sensual e viciante: uma aura elegante que lhe permite conquistar a festa.',
+                front_img:'https://epocacosmeticos.vteximg.com.br/arquivos/ids/501874/212-vip-black-carolina-herrera-perfume-masculino-eau-de-parfum--1-.jpg?v=637951419481930000',
                 images:[
-                    {id: 1, src:''},
-                    {id: 2, src:''},
-                    {id: 3, src:''},
-                    {id: 4, src:''},
+                    {id: 1, src:'https://epocacosmeticos.vteximg.com.br/arquivos/ids/501874/212-vip-black-carolina-herrera-perfume-masculino-eau-de-parfum--1-.jpg?v=637951419481930000'},
+                    {id: 2, src:'https://epocacosmeticos.vteximg.com.br/arquivos/ids/501875/212-vip-black-carolina-herrera-perfume-masculino-eau-de-parfum--2-.jpg?v=637951419702330000'},
+                    {id: 3, src:'https://epocacosmeticos.vteximg.com.br/arquivos/ids/501878/212-vip-black-carolina-herrera-perfume-masculino-eau-de-parfum--5-.jpg?v=637951420207030000'},
                 ],
                 info:[
                     {
-                        categoria:'',
-                        marca:'',
-                        linha:'',
-                        familia_olfativa:'',
-                        concentração:''
+                        categoria:'masculino',
+                        marca:'Carolina Herrera',
+                        linha:'212 vip',
+                        familia_olfativa:'Aromático, Fougére',
+                        concentração:'Eau de Parfum'
                         
                     }
                 ]
                 
             },
-            {
+            /*{
                 id: 7,
                 title:'',
                 link:'',

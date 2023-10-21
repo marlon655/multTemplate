@@ -1,29 +1,4 @@
 <template>
-<!--     <div class="produtos">
-        <div class="product-item">
-            <div class="product-item-formact">
-                <div class="product-item-image">
-                    <img src="@/assets/quasar.webp">
-                </div>
-                <div class="product-item-desc">
-                    <div class="product-item-pad">
-                        <span class="title">QUASAR</span>
-                        <router-link to="#" class="item-link">Vision Desodorante Colônia 100ml</router-link>
-                        <span class="max-price">R$ 140,90</span>
-                        <span class="price">R$ 115,90</span>
-                        <p class="description-item">
-                            O Combo Quasar Vision traz perfumação e frescor para te incentivar
-                            a correr atrás de seus objetivos e ir além.
-                        </p>
-                        <div class="box-buy">
-                            <button class="btn-buy">Compre Agora</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="produtos">
         <div class="product-item">
             <div class="product-item-formact">
