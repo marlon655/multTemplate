@@ -1,0 +1,24 @@
+<script>
+
+var reverseWords = function(s) {
+    let arr = s.split(" ");
+    let newWordArray = [];
+    let newWord = '';
+    for(let i = arr.length - 1; 0 <= i; i--){
+        if(arr[i] != ''){
+            newWordArray.push(arr[i]);
+        }
+    }
+    for(let i = 0; i < newWordArray.length; i++){
+        newWord += newWordArray[i];
+        if(newWordArray.length - 1 > i ){
+            newWord += ' ';
+        }
+    }
+    return newWord;
+};
+let s = ['the sky is blue','  hello world  ','a good   example'];
+for(let i = 0; i < s.length; i ++){
+    console.log(reverseWords(s[i]));
+}
+</script>

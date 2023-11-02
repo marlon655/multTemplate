@@ -1,8 +1,6 @@
 <template>
     <section class="banner">
-        <!-- <div class="center"> -->
             <bigBanner />
-        <!-- </div> -->
     </section>
 
     <section class="produtos">

@@ -4,7 +4,7 @@ class PerfumeDB{
             {
                 id: 1,
                 title:'Malbec',
-                link:'Link para a pagina',
+                slug:'Malbec-Desodorante-Colônia-100ml',
                 text_link:'Malbec Desodorante Colônia 100ml',
                 price:'179,00',
                 max_price:'200,00',
@@ -30,7 +30,7 @@ class PerfumeDB{
             {
                 id: 2,
                 title:'Quasar',
-                link:'',
+                slug:'Quasar-Vision-Desodorante-Colônia-100ml',
                 text_link:'Quasar Vision Desodorante Colônia 100ml',
                 price:'115,90',
                 max_price:'130,00',
@@ -54,7 +54,7 @@ class PerfumeDB{
             {
                 id: 3,
                 title:'Botica 214',
-                link:'',
+                slug:'Botica-214-Golden-Gardênia-Eau-De-Parfum-75ml',
                 text_link:'Botica 214 Golden Gardênia Eau De Parfum 75ml',
                 price:'170,00',
                 max_price:'200,00',
@@ -79,7 +79,7 @@ class PerfumeDB{
             {
                 id: 4,
                 title:'JEAN PAUL GAULTIER',
-                link:'',
+                slug:'Ultra-Male-Jean-Paul-Gaultier',
                 text_link:'Ultra Male Jean Paul Gaultier',
                 price:'439,90',
                 max_price:'629,00',
@@ -90,6 +90,7 @@ class PerfumeDB{
                     {id: 2, src:'https://epocacosmeticos.vteximg.com.br/arquivos/ids/499116/Ultra-Male-Jean-Paul-Gaultier---Perfume-Masculino---Eau-de-Toilette--9-.jpg?v=637938817649730000'},
                     {id: 3, src:'https://epocacosmeticos.vteximg.com.br/arquivos/ids/499117/Ultra-Male-Jean-Paul-Gaultier---Perfume-Masculino---Eau-de-Toilette--10-.jpg?v=637938817721000000'},
                     {id: 4, src:'https://epocacosmeticos.vteximg.com.br/arquivos/ids/499121/Ultra-Male-Jean-Paul-Gaultier---Perfume-Masculino---Eau-de-Toilette--14-.jpg?v=637938818047600000'},
+                    {id: 5, src:'https://epocacosmeticos.vteximg.com.br/arquivos/ids/499121/Ultra-Male-Jean-Paul-Gaultier---Perfume-Masculino---Eau-de-Toilette--14-.jpg?v=637938818047600000'},
                 ],
                 info:[
                     {
@@ -105,7 +106,7 @@ class PerfumeDB{
             {
                 id: 5,
                 title:'212 VIP',
-                link:'',
+                slug:'212-VIP-Rosé---CAROLINA-HERRERA',
                 text_link:'212 VIP Rosé - CAROLINA HERRERA',
                 price:'261,90',
                 max_price:'299,00',
@@ -131,7 +132,7 @@ class PerfumeDB{
             {
                 id: 6,
                 title:'212 Vip',
-                link:'',
+                slug:'212-Vip-Black-Carolina-Herrera',
                 text_link:'212 Vip Black Carolina Herrera',
                 price:'499,00',
                 max_price:'599,00',
@@ -157,7 +158,7 @@ class PerfumeDB{
             /*{
                 id: 7,
                 title:'',
-                link:'',
+                slug:'',
                 text_link:'',
                 price:'',
                 max_price:'',
@@ -184,7 +185,7 @@ class PerfumeDB{
             {
                 id: 8,
                 title:'',
-                link:'',
+                slug:'',
                 text_link:'',
                 price:'',
                 max_price:'',
@@ -212,6 +213,10 @@ class PerfumeDB{
     }
     getPerfumes(){
         return this.perfumes;
+    }
+    getBySlug(slug){
+        const perfume = this.perfumes.find(perfume => perfume.slug === slug ? perfume : undefined);
+        return perfume;
     }
 }
 export default PerfumeDB;

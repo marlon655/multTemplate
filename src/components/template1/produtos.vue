@@ -8,12 +8,12 @@
                 <div class="product-item-desc">
                     <div class="product-item-pad">
                         <span class="title">{{ item.title }}</span>
-                        <router-link to="#" class="item-link">{{ item.text_link }}</router-link>
+                        <router-link :to="'produto/'+ item.slug " class="item-link">{{ item.text_link }}</router-link>
                         <span class="max-price">R$ {{ item.max_price }}</span>
                         <span class="price">R$ {{ item.price }}</span>
                         <p class="description-item">{{ item.desc_item }}</p>
                         <div class="box-buy">
-                            <button class="btn-buy">Compre Agora</button>
+                            <router-link :to="'produto/'+ item.slug" style="width: 100%;"><button class="btn-buy">Compre Agora</button></router-link>
                         </div>
                     </div>
                 </div>
