@@ -24,7 +24,21 @@ class PerfumeDB{
                         familia_olfativa:'Amadeirado',
                         concentração:'Desodorante Colônia'
                     }
-                ]
+                ],
+                about_info:[
+                    {
+                        title:'Descubra Mais Sobre',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                    {
+                        title:'Como Usar',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                    {
+                        title:'Ingredientes que compoem esse produto',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                ],
                 
             },
             {
@@ -49,7 +63,21 @@ class PerfumeDB{
                         familia_olfativa:'Fresco',
                         concentração:'Desodorante Colônia'
                     }
-                ]
+                ],
+                about_info:[
+                    {
+                        title:'Descubra Mais Sobre',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                    {
+                        title:'Como Usar',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                    {
+                        title:'Ingredientes que compoem esse produto',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                ], 
             },
             {
                 id: 3,
@@ -74,7 +102,21 @@ class PerfumeDB{
                         concentração:'Eau de Parfum'
                         
                     }
-                ]
+                ],
+                about_info:[
+                    {
+                        title:'Descubra Mais Sobre',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                    {
+                        title:'Como Usar',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                    {
+                        title:'Ingredientes que compoem esse produto',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                ],
             },
             {
                 id: 4,
@@ -100,7 +142,21 @@ class PerfumeDB{
                         familia_olfativa:'Fougére, Oriental',
                         concentração:'Eau de Toilette'
                     }
-                ]
+                ],
+                about_info:[
+                    {
+                        title:'Descubra Mais Sobre',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                    {
+                        title:'Como Usar',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                    {
+                        title:'Ingredientes que compoem esse produto',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                ],
                 
             },
             {
@@ -126,7 +182,21 @@ class PerfumeDB{
                         concentração:'Eau de Parfum - EDP'
                         
                     }
-                ]
+                ],
+                about_info:[
+                    {
+                        title:'Descubra Mais Sobre',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                    {
+                        title:'Como Usar',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                    {
+                        title:'Ingredientes que compoem esse produto',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                ],
                 
             },
             {
@@ -152,7 +222,21 @@ class PerfumeDB{
                         concentração:'Eau de Parfum'
                         
                     }
-                ]
+                ],
+                about_info:[
+                    {
+                        title:'Descubra Mais Sobre',
+                        text: 'Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur.',
+                    },
+                    {
+                        title:'Como Usar',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                    {
+                        title:'Ingredientes que compoem esse produto',
+                        text: `Duis vel placerat urna. Pellentesque lacinia magna urna, at consequat tellus interdum id. Phasellus sagittis metus nec tempor fringilla. Nunc mollis in enim eu consectetur. `,
+                    },
+                ],
                 
             },
             /*{
