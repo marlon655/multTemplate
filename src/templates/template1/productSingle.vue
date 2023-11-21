@@ -262,6 +262,10 @@ export default {
     justify-content: space-between;
     padding-right: 10px;
 }
+.title-description:hover{
+    color: #00a470;
+    border-color: #00a470;
+}
 .description-open{
     border-color:#00442F;
     color: #00442F;
