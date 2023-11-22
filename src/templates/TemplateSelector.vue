@@ -47,7 +47,7 @@ export default{
    box-sizing: border-box;
 }
     .bar{
-        padding: 8px;
+        padding: 10px;
         width: 100%;
         background-color: #ccc;
     }
