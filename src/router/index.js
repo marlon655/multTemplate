@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue';
 import ContactView from '../views/ContactView.vue';
 import ProductSingleView from '../views/ProductSingleView.vue';
+import BagView from '../views/BagView.vue'
 import selectionPage from '../views/selectionPage.vue'
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
     path: '/produto/:name',
     name: 'produto',
     component: ProductSingleView
+  },
+  {
+    path: '/sacola',
+    name: 'sacola',
+    component: BagView
   },
   /*{
     path: '/selecao',
