@@ -34,7 +34,21 @@
         </div>
         <div class="right">
             <div class="card-01">
-                <button class="finaly">Finalizar compra</button>
+                <div class="inner-padding">
+                    <router-link to="/">
+                        <button class="finaly">Finalizar compra</button>
+                    </router-link>
+                    <div class="inner-cart">
+                        <div class="number-itens">
+                            <span>Produtos:(4 itens)</span>
+                        </div>
+                        <div class="total-itens">
+                            <span class="max-price" style="margin-right: 10px;">R$376,00</span>
+                            <span class="price">R$276,00</span>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </section>
@@ -54,14 +68,11 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 10px;
 }
 .left{
     width: 65%;
     margin-right: 10px;
-}
-.right{
-    width: 100%;
-    max-width: 400px;
 }
 .card-01{
     width: 100%;
@@ -153,6 +164,48 @@
 .price{
     font-size: 18px;
     color: black;
+}
+/* right*/
+.right{
+    width: 100%;
+    max-width: 400px;
+}
+.inner-padding{
+    width: 100%;
+    padding: 10px;
+}
+.finaly {
+    text-align: center;
+    background-color: #00a470;
+    border: none;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 2px solid #005e40;
+    border-right: 2px solid #005e40;
+    color: aliceblue;
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+}
+.finaly:hover{
+    background-color: #00c587;
+}
+.inner-cart{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    align-items: center;
+}
+.number-itens span{
+    font-size: 18px;
+    color: #4b4b4b;
+    font-family: sans-serif;
+    font-weight: 600;
 }
 @media screen and (max-width: 768px){
 .bag{
