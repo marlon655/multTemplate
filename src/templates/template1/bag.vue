@@ -5,8 +5,26 @@
                 
                 <div class="box-item-padding">
                     <div class="box-item">
-                        <div class="box-img">
-
+                        <div class="product">
+                            <div class="box-img">
+                                <img src="https://res.cloudinary.com/beleza-na-web/image/upload/w_500,f_auto,fl_progressive,q_auto:eco/v1/imagens/products/B48130/B48130_Malbec_Desodorante_Col%C3%B4nia_1.jpg">
+                            </div>
+                            <div class="description">
+                                <span>Malbec</span>
+                                <span>Magnetic Desodorante Colônia, 100ml</span>
+                            </div>
+                        </div>
+                        <div class="number-itens">
+                            <select>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <button>Remover</button>
+                        </div>
+                        <div class="value-item">
+                            <span class="max-price">R$200,00</span>
+                            <span class="price">R$180,00</span>
                         </div>
                     </div>
                 </div>
@@ -53,13 +71,64 @@
     padding: 10px;
 }
 .box-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    border: 1px solid #ccc;
+}
+.product{
+    display: flex;
+    align-items: center;
 }
 .box-img{
-    background-color: blue;
-    height: 150px;
-    width: 150px;
+    /* background-color: blue; */
+    height: 100px;
+    width: 100px;
+    min-width: 100px;
+}
+.box-img img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+.description{
+    text-align: left;
+}
+.description span{
+    display: block;
+    width: 100%;
+}
+.number-itens{
+    display: flex;
+    flex-direction: column;
+}
+.number-itens select{
+    font-size: 16px;
+    color: #707070;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid #ccc;
+}
+.number-itens button{
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 5px;
+    color: white;
+    background-color: #00A470;
+    border: 1px solid #00442F;
+}
+.number-itens button:hover{
+    background-color: #00c284;
+    border: 1px solid #007952;
+}
+.max-price{
+    color: #707070;
+    font-size: 16px;
+    text-decoration: line-through;
+}
+.price{
+    font-size: 18px;
+    color: black;
 }
 @media screen and (max-width: 768px){
 .bag{
@@ -72,5 +141,21 @@
     margin-top: 20px;
     max-width: 100%;
 }
+}
+@media screen and (max-width: 1024px){
+    .box-item{
+        display: block;
+    }
+    .number-itens{
+        display: block;
+        text-align: left;
+        margin: 10px 0;
+    }
+    .number-itens select{
+        margin-right: 50px;
+    }
+    .value-item{
+        text-align: left;
+    }
 }
 </style>

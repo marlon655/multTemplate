@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path: '/sobre',
-    name: 'sobre',
+    name: 'sobre', 
     component: AboutView
   },
   {
@@ -32,6 +32,7 @@ const routes = [
     name: 'sacola',
     component: BagView
   },
+
   /*{
     path: '/selecao',
     name: 'selecao',

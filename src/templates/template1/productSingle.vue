@@ -21,18 +21,19 @@
             </div>
 
             <div class="caracteristics">
-                <div class="info-line">
-                    <span class="info-label">Categoria</span>
-                    <span class="info-value">Masculino</span>
+                
+                <div class="info-line" v-for="(val, key) in perfume.info[0]">
+                    <span class="info-label">{{ formatText(key) }}</span>
+                    <span class="info-value">{{ val }}</span>
                 </div>
-                <div class="info-line">
+                <!-- <div class="info-line">
                     <span class="info-label">Subfamilia</span>
                     <span class="info-value">Ambar</span>
                 </div>
                 <div class="info-line">
                     <span class="info-label">Linha</span>
                     <span class="info-value">Gold</span>
-                </div>
+                </div> -->
             </div>
 
             <div class="product-description">
@@ -60,10 +61,10 @@
                 <div class="buy-box">
                     <div class="desconto-box">
                         <h2 class="max-price">R${{ perfume.max_price }}</h2>
-                        <h2>(11% de desconto)</h2>
+                        <h2>( {{ percentOff(perfume) }}% de Desconto)</h2>
                     </div>
                     <h2 class="min-price">R${{ perfume.price }}</h2>
-                    <router-link to="#" style="width: 100%;"><button class="btn-buy">Compre Agora</button></router-link>
+                    <router-link to="/sacola" style="width: 100%;"><button class="btn-buy">Compre Agora</button></router-link>
                     <div class="box-cupom">
                         <div class="cupom">
                             <span>CUPOM: Maisdesconto</span>
@@ -92,13 +93,15 @@ export default {
             // perfume: PerfumesServices.getBySlug(this.itemData.url_item),
             indexOpen: 0,
             perfume: null,
+            percent: 0,
             touchStartX: 0,
             deltaX: 0,
             final: 0,
         }
     },
     created() {
-        this.perfume = PerfumesServices.getBySlug(this.itemData.url_item)
+        this.perfume = PerfumesServices.getBySlug(this.itemData.url_item);
+        this.percent = PerfumesServices.percentOff(this.perfume);
     },
     computed:{
         opened(){
@@ -146,6 +149,22 @@ export default {
         },
         getClassIcon(index){
             return this.indexOpen === index ? ['fas', 'angle-up'] : ['fas', 'angle-down'];
+        },
+        percentOff(perfum){
+            let max = parseFloat(perfum.max_price.replace(',','.'));
+            let min = parseFloat(perfum.price.replace(',','.')) * 100;
+            let result = min / max;
+            let percent = Math.floor(100 - result);
+            return percent;
+        },
+        toUpper(str){
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        },
+        formatText(text){
+            let replaceStr = text.replace(/[_-]/g, ' ');
+            let separate = replaceStr.split(' ');
+            let applyUpper = separate.map(this.toUpper).join(' ');
+            return applyUpper;
         }
 
     }

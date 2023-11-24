@@ -302,5 +302,12 @@ class PerfumeDB{
         const perfume = this.perfumes.find(perfume => perfume.slug === slug ? perfume : undefined);
         return perfume;
     }
+    percentOff(perfum){
+        let max = parseFloat(perfum.max_price.replace(',','.'));
+        let min = parseFloat(perfum.price.replace(',','.')) * 100;
+        let result = min / max;
+        let percent = 100 - result;
+        return percent;
+    }
 }
 export default PerfumeDB;
