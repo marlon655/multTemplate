@@ -5,6 +5,7 @@
                 
                 <div class="box-item-padding">
                     <div class="box-item">
+                        <router-link to="/" class="link-product">
                         <div class="product">
                             <div class="box-img">
                                 <img src="https://res.cloudinary.com/beleza-na-web/image/upload/w_500,f_auto,fl_progressive,q_auto:eco/v1/imagens/products/B48130/B48130_Malbec_Desodorante_Col%C3%B4nia_1.jpg">
@@ -14,6 +15,7 @@
                                 <span>Magnetic Desodorante Colônia, 100ml</span>
                             </div>
                         </div>
+                        </router-link>
                         <div class="number-itens">
                             <select>
                                 <option value="1">1</option>
@@ -32,7 +34,7 @@
         </div>
         <div class="right">
             <div class="card-01">
-                <h2>Finalizar Compra</h2>
+                <button class="finaly">Finalizar compra</button>
             </div>
         </div>
     </section>
@@ -76,15 +78,33 @@
     align-items: center;
     width: 100%;
 }
+.link-product{
+    color: black;
+    text-decoration: none;
+}
+.link-product:hover{
+    color: #00A470;
+}
 .product{
     display: flex;
     align-items: center;
 }
 .box-img{
-    /* background-color: blue; */
+    position: relative;
     height: 100px;
     width: 100px;
     min-width: 100px;
+}
+
+.link-product:hover .box-img::before{
+    content: ' ';
+    background: black;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 .box-img img{
     object-fit: contain;
@@ -120,6 +140,10 @@
 .number-itens button:hover{
     background-color: #00c284;
     border: 1px solid #007952;
+}
+.value-item{
+    display: flex;
+    flex-direction: column;
 }
 .max-price{
     color: #707070;

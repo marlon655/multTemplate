@@ -355,7 +355,9 @@ export default {
     height: 50px;
     cursor: pointer;
 }
-
+.btn-buy:hover{
+    background-color: #00c587;
+}
 .box-cupom {
     display: flex;
     justify-content: space-between;
