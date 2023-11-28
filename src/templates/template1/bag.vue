@@ -47,7 +47,17 @@
                             <span class="price">R$276,00</span>
                         </div>
                     </div>
-                    
+                    <div class="total">
+                        <span class="subtotal">Subtotal:</span>
+                        <span class="final-value">R$268,60</span>
+                    </div>
+                    <div class="cupom-discont">
+                        <h1>Tem cumpom de desconto?</h1>
+                        <div class="cupom-apply">
+                            <input type="text">
+                            <button>APLICAR</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -178,10 +188,7 @@
     text-align: center;
     background-color: #00a470;
     border: none;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
+    border-radius: 10px;
     border-bottom: 2px solid #005e40;
     border-right: 2px solid #005e40;
     color: aliceblue;
@@ -200,12 +207,69 @@
     justify-content: space-between;
     margin-top: 30px;
     align-items: center;
+    padding: 10px 0;
 }
 .number-itens span{
     font-size: 18px;
     color: #4b4b4b;
     font-family: sans-serif;
     font-weight: 600;
+}
+.total{
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ccc;
+}
+.subtotal{
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+}
+.final-value{
+    font-weight: 600;
+    color: black;
+    font-size: 18px;
+}
+.cupom-discont{
+    border: 1px solid #ccc;
+    background-color: #ececec;
+    padding: 10px;
+    border-radius: 5px;
+}
+.cupom-discont h1{
+    font-size: 18px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+.cupom-apply{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.cupom-apply button{
+    cursor: pointer;
+    margin-left: 5%;
+    padding: 5px 10px;
+    color: #00442F;
+    font-size: 18px;
+    border: 3px solid #00442F;
+    border-bottom: 4px solid #00442F;
+    border-radius: 5px;
+}
+.cupom-apply button:hover{
+    color: white;
+    background-color: #00A470;
+}
+.cupom-apply input[type='text']{
+    width: 90%;
+    outline-color: #00A470;
+    padding-left: 10px;
+    border: 1px solid #00442F;
+    border-radius: 5px;
+    height: 32px;
+    font-size: 22px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 @media screen and (max-width: 768px){
 .bag{
