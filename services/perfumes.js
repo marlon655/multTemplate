@@ -302,6 +302,15 @@ class PerfumeDB{
         const perfume = this.perfumes.find(perfume => perfume.slug === slug ? perfume : undefined);
         return perfume;
     }
+    getById(id){
+        const perfume = this.perfumes.find(perfume => perfume.id === id ? perfume : undefined);
+        if(perfume){
+            const { id, title, text_link ,price ,max_price ,front_img, slug } = perfume;
+            return { id, title, text_link, price, max_price, front_img, slug };
+        }else{
+            return {};
+        }
+    }
     percentOff(perfum){
         let max = parseFloat(perfum.max_price.replace(',','.'));
         let min = parseFloat(perfum.price.replace(',','.')) * 100;

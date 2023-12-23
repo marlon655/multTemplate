@@ -2,9 +2,10 @@
     <section class="bag">
         <div class="left">
             <div class="card-01">
-                
+
                 <div class="box-item-padding">
-                    <div class="box-item">
+
+                    <!-- <div class="box-item">
                         <router-link to="/" class="link-product">
                         <div class="product">
                             <div class="box-img">
@@ -28,14 +29,44 @@
                             <span class="max-price">R$200,00</span>
                             <span class="price">R$180,00</span>
                         </div>
+                    </div> -->
+
+                    <div class="box-item" v-for="(info, index) in carrinho" :key="info.id">
+                        <router-link :to="'produto/' + info.slug" class="link-product">
+                            <div class="product">
+                                <div class="box-img">
+                                    <img :src="info.front_img">
+                                </div>
+                                <div class="description">
+                                    <span>{{ info.title }}</span>
+                                    <span>{{ info.text_link }}</span>
+                                </div>
+                            </div>
+                        </router-link>
+                        <div class="value-box">
+                            <div class="number-itens">
+                                <!-- <select v-model="itens[index].quantity" @change="updateQt(info.id, +$event.target.value)" :key="info.id">
+                                    <option v-for="number in Array.from({ length: 10 }, (_, index) => index + 1)"
+                                        :value="number">{{ number }}</option> -->
+                                    <!-- <option :value="2">2</option>
+                                    <option :value="3">3</option> -->
+                                <!-- </select> -->
+                                <button @click="removeItem(info.id)">Remover</button>
+                            </div>
+                            <div class="value-item">
+                                <span class="max-price">{{ info.max_price }}</span>
+                                <span class="price">{{ info.price }}</span>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
         <div class="right">
             <div class="card-01">
                 <div class="inner-padding">
-                    <router-link to="/">
+                    <router-link to="">
                         <button class="finaly">Finalizar compra</button>
                     </router-link>
                     <div class="inner-cart">
@@ -43,13 +74,13 @@
                             <span>Produtos:(4 itens)</span>
                         </div>
                         <div class="total-itens">
-                            <span class="max-price" style="margin-right: 10px;">R$376,00</span>
-                            <span class="price">R$276,00</span>
+                            <!-- <span class="max-price" style="margin-right: 10px;">R$376,00</span> -->
+                            <span class="price">{{ total }}</span>
                         </div>
                     </div>
                     <div class="total">
                         <span class="subtotal">Subtotal:</span>
-                        <span class="final-value">R$268,60</span>
+                        <span class="final-value">R${{ total }}</span>
                     </div>
                     <div class="cupom-discont">
                         <h1>Tem cumpom de desconto?</h1>
@@ -62,62 +93,122 @@
             </div>
         </div>
     </section>
-
 </template>
 <script>
-
+import perfumesServices from '../../../services/perfumes.js';
+const PerfumesServices = new perfumesServices();
+export default {
+    data() {
+        return {
+            itens: [],
+            carrinho: [],
+            unit: [],
+            total: 0
+        }
+    },
+    created() {
+        const storage = localStorage.getItem('cart');
+        this.itens = JSON.parse(storage);
+        this.itens.forEach(el => {
+            let perfume = PerfumesServices.getById(el.id);
+            this.carrinho.push(perfume);
+        });
+        console.log(this.carrinho);
+        this.totalCalculate();
+    },
+    methods: {
+        removeItem(id) {
+            let toRemove = this.itens.findIndex(item => item.id === id);
+            if(toRemove != -1){
+                this.carrinho.splice(toRemove,1);
+                this.itens.splice(toRemove,1);
+            }
+            console.log(this.carrinho);
+            this.totalCalculate();
+            this.saveCart();
+        },
+        updateQt(id, qt) {
+            const item = this.itens.find(item => item.id === id);
+            item.quantity = qt;
+            this.saveCart();
+            this.totalCalculate();
+        },
+        saveCart() {
+            localStorage.setItem('cart', JSON.stringify(this.itens));
+        },
+        totalCalculate() {
+            this.total = 0;
+            if(this.itens.length !== 0){
+                this.itens.forEach(el => {
+                    let perfume = PerfumesServices.getById(el.id);
+                    const format = parseFloat(perfume.price.replace(',', '.'));
+                    this.total += format * el.quantity;
+                })
+            }
+        }
+    }
+}
 </script>
 <style>
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-.bag{
+
+.bag {
     margin-top: 20px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 10px;
 }
-.left{
+
+.left {
     width: 65%;
     margin-right: 10px;
 }
-.card-01{
+
+.card-01 {
     width: 100%;
     border: 1px solid #ccc;
-    box-shadow: 5px 5px 5px 0px rgba(204,204,204,1);
+    box-shadow: 5px 5px 5px 0px rgba(204, 204, 204, 1);
 }
-.box-item-padding{
+
+.box-item-padding {
     width: 100%;
-    padding: 10px;
 }
-.box-item{
+
+.box-item {
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
-.link-product{
+
+.link-product {
     color: black;
     text-decoration: none;
 }
-.link-product:hover{
+
+.link-product:hover {
     color: #00A470;
 }
-.product{
+
+.product {
     display: flex;
     align-items: center;
 }
-.box-img{
+
+.box-img {
     position: relative;
     height: 100px;
     width: 100px;
     min-width: 100px;
 }
 
-.link-product:hover .box-img::before{
+.link-product:hover .box-img::before {
     content: ' ';
     background: black;
     opacity: 0.2;
@@ -127,30 +218,45 @@
     left: 0;
     right: 0;
 }
-.box-img img{
+
+.box-img img {
     object-fit: contain;
     width: 100%;
     height: 100%;
 }
-.description{
+
+.description {
     text-align: left;
 }
-.description span{
+
+.description span {
     display: block;
+    font-size: 14px;
     width: 100%;
 }
-.number-itens{
+
+.value-box {
+    /* background-color: #005e40; */
+    width: 160px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.number-itens {
     display: flex;
     flex-direction: column;
 }
-.number-itens select{
+
+.number-itens select {
     font-size: 16px;
     color: #707070;
     padding: 5px 10px;
     outline: none;
     border: 1px solid #ccc;
 }
-.number-itens button{
+
+.number-itens button {
     cursor: pointer;
     margin-top: 10px;
     padding: 5px;
@@ -158,32 +264,39 @@
     background-color: #00A470;
     border: 1px solid #00442F;
 }
-.number-itens button:hover{
+
+.number-itens button:hover {
     background-color: #00c284;
     border: 1px solid #007952;
 }
-.value-item{
+
+.value-item {
     display: flex;
     flex-direction: column;
 }
-.max-price{
+
+.max-price {
     color: #707070;
     font-size: 16px;
     text-decoration: line-through;
 }
-.price{
+
+.price {
     font-size: 18px;
     color: black;
 }
+
 /* right*/
-.right{
+.right {
     width: 100%;
     max-width: 400px;
 }
-.inner-padding{
+
+.inner-padding {
     width: 100%;
     padding: 10px;
 }
+
 .finaly {
     text-align: center;
     background-color: #00a470;
@@ -199,55 +312,65 @@
     height: 50px;
     cursor: pointer;
 }
-.finaly:hover{
+
+.finaly:hover {
     background-color: #00c587;
 }
-.inner-cart{
+
+.inner-cart {
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
     align-items: center;
     padding: 10px 0;
 }
-.number-itens span{
+
+.number-itens span {
     font-size: 18px;
     color: #4b4b4b;
     font-family: sans-serif;
     font-weight: 600;
 }
-.total{
+
+.total {
     padding: 10px 0;
     display: flex;
     justify-content: space-between;
     border-top: 1px solid #ccc;
 }
-.subtotal{
+
+.subtotal {
     color: black;
     font-size: 18px;
     font-weight: 600;
 }
-.final-value{
+
+.final-value {
     font-weight: 600;
     color: black;
     font-size: 18px;
 }
-.cupom-discont{
+
+.cupom-discont {
     border: 1px solid #ccc;
     background-color: #ececec;
     padding: 10px;
     border-radius: 5px;
 }
-.cupom-discont h1{
+
+.cupom-discont h1 {
     font-size: 18px;
     font-weight: 400;
     margin: 5px 0;
 }
-.cupom-apply{
+
+.cupom-apply {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-.cupom-apply button{
+
+.cupom-apply button {
     cursor: pointer;
     margin-left: 5%;
     padding: 5px 10px;
@@ -257,11 +380,13 @@
     border-bottom: 4px solid #00442F;
     border-radius: 5px;
 }
-.cupom-apply button:hover{
+
+.cupom-apply button:hover {
     color: white;
     background-color: #00A470;
 }
-.cupom-apply input[type='text']{
+
+.cupom-apply input[type='text'] {
     width: 90%;
     outline-color: #00A470;
     padding-left: 10px;
@@ -271,32 +396,43 @@
     font-size: 22px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-@media screen and (max-width: 768px){
-.bag{
-    display: block;
-}
-.left{
-    width: 100%;
-}
-.right{
-    margin-top: 20px;
-    max-width: 100%;
-}
-}
-@media screen and (max-width: 1024px){
-    .box-item{
+
+@media screen and (max-width: 768px) {
+    .bag {
         display: block;
     }
-    .number-itens{
+
+    .left {
+        width: 100%;
+    }
+
+    .right {
+        margin-top: 20px;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .box-item {
+        display: block;
+    }
+
+    .number-itens {
         display: block;
         text-align: left;
         margin: 10px 0;
     }
-    .number-itens select{
+
+    .number-itens select {
         margin-right: 50px;
     }
-    .value-item{
+
+    .value-item {
         text-align: left;
     }
-}
-</style>
+
+    .value-box {
+        width: 100%;
+        display: block;
+    }
+}</style>

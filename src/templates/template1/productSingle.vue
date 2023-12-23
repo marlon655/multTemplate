@@ -5,7 +5,7 @@
                 <div class="carrosel-container" @touchstart="startTouch" @touchmove="moveTouch" @touchend="endTouch">
                     <div class="carrosel-img">
                         <div class="big-box-img" v-for="image in perfume.images">
-                            <boxImage :img="image.src" style="border: none;"/>
+                            <boxImage :img="image.src" style="border: none;" />
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
             </div>
 
             <div class="caracteristics">
-                
+
                 <div class="info-line" v-for="(val, key) in perfume.info[0]">
                     <span class="info-label">{{ formatText(key) }}</span>
                     <span class="info-value">{{ val }}</span>
@@ -38,7 +38,8 @@
 
             <div class="product-description">
                 <div class="container-description" v-for="(info, index) in perfume.about_info">
-                    <div class="title-description" @click="showDetails(index)" :class="{'description-open': indexOpen == index}">
+                    <div class="title-description" @click="showDetails(index)"
+                        :class="{ 'description-open': indexOpen == index }">
                         <h5>{{ info.title }}</h5>
                         <font-awesome-icon :icon="getClassIcon(index)" />
                     </div>
@@ -64,7 +65,9 @@
                         <h2>( {{ percentOff(perfume) }}% de Desconto)</h2>
                     </div>
                     <h2 class="min-price">R${{ perfume.price }}</h2>
-                    <router-link to="/sacola" style="width: 100%;"><button class="btn-buy">Compre Agora</button></router-link>
+                    <router-link to="" style="width: 100%;">
+                        <button class="btn-buy" @click="addItem(perfume)">Compre Agora</button>
+                    </router-link>
                     <div class="box-cupom">
                         <div class="cupom">
                             <span>CUPOM: Maisdesconto</span>
@@ -97,18 +100,36 @@ export default {
             touchStartX: 0,
             deltaX: 0,
             final: 0,
+            carrinho: [],
         }
     },
     created() {
         this.perfume = PerfumesServices.getBySlug(this.itemData.url_item);
         this.percent = PerfumesServices.percentOff(this.perfume);
     },
-    computed:{
-        opened(){
-
-        }
-    },
     methods: {
+        //Carrinho-de-compras-----------------------------------------
+        addItem(newItem) {
+            const storage = localStorage.getItem('cart');
+            if(storage){
+                this.carrinho = JSON.parse(storage);
+                const itemExist = this.carrinho.find(item => item.id === newItem.id);
+                if(itemExist){
+                    itemExist.quantity += 1;
+                }else{
+                    this.carrinho.push({ id: newItem.id, quantity: 1 });
+                }
+            }else{
+                this.carrinho.push({ id: newItem.id, quantity: 1 });
+            }
+            this.saveCart();
+            this.$router.push('/sacola');
+        },
+        saveCart() {
+            localStorage.setItem('cart', JSON.stringify(this.carrinho));
+        },
+
+        //--------Não--Mexer--------------------------------------------
         changeBigImg(index) {
             const scroll = document.querySelector('.carrosel-container');
             const width = scroll.offsetWidth;
@@ -131,36 +152,36 @@ export default {
                 scroll.scrollLeft += -width;
             } else if (this.deltaX < -threshold) {
                 scroll.scrollLeft += +width;
-                if(this.final == 1){
+                if (this.final == 1) {
                     scroll.scrollLeft = 0;
                     this.final = 0;
                 }
-                if(scroll.scrollLeft == scroll.scrollWidth - width){
+                if (scroll.scrollLeft == scroll.scrollWidth - width) {
                     this.final = 1;
                 }
             }
         },
-        showDetails(index){
-            if(this.indexOpen === index){
+        showDetails(index) {
+            if (this.indexOpen === index) {
                 this.indexOpen = null;
-            }else{
+            } else {
                 this.indexOpen = index;
             }
         },
-        getClassIcon(index){
+        getClassIcon(index) {
             return this.indexOpen === index ? ['fas', 'angle-up'] : ['fas', 'angle-down'];
         },
-        percentOff(perfum){
-            let max = parseFloat(perfum.max_price.replace(',','.'));
-            let min = parseFloat(perfum.price.replace(',','.')) * 100;
+        percentOff(perfum) {
+            let max = parseFloat(perfum.max_price.replace(',', '.'));
+            let min = parseFloat(perfum.price.replace(',', '.')) * 100;
             let result = min / max;
             let percent = Math.floor(100 - result);
             return percent;
         },
-        toUpper(str){
+        toUpper(str) {
             return str.charAt(0).toUpperCase() + str.slice(1);
         },
-        formatText(text){
+        formatText(text) {
             let replaceStr = text.replace(/[_-]/g, ' ');
             let separate = replaceStr.split(' ');
             let applyUpper = separate.map(this.toUpper).join(' ');
@@ -208,6 +229,7 @@ export default {
     position: relative;
     width: 100%;
 }
+
 .carrosel-container {
     margin: 0;
     position: relative;
@@ -215,9 +237,11 @@ export default {
     overflow: hidden;
     transition: scroll-left 2s ease;
 }
+
 .carrosel-img {
     display: flex;
 }
+
 .mini-box-img {
     margin: 0;
     /* margin-right: 5px; */
@@ -225,6 +249,7 @@ export default {
     min-width: calc(100% / 4);
     border-bottom: 5px solid transparent;
 }
+
 .mini-box-img:hover {
     border-bottom: 5px solid red;
     border-bottom-left-radius: 5px;
@@ -235,41 +260,49 @@ export default {
     margin: 0;
     min-width: 100%;
 }
+
 /* Caracteristicas */
-.caracteristics{
+.caracteristics {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.info-line{
+
+.info-line {
     text-align: left;
     width: 100%;
     padding: 10px 0;
 }
-.info-label{
+
+.info-label {
     font-weight: bold;
     font-size: 16px;
     color: black;
     display: block;
 }
-.info-value{
+
+.info-value {
     color: rgb(43, 43, 43);
     display: block;
 }
+
 /* Descrição do produto */
-.product-description{
+.product-description {
     width: 100%;
     margin-top: 10px;
 }
-.container-description{
+
+.container-description {
     width: 100%;
 }
-.title-description h5{
+
+.title-description h5 {
     display: block;
     font-weight: 300;
     width: 100%;
 }
-.title-description{
+
+.title-description {
     cursor: pointer;
     color: black;
     font-size: 20px;
@@ -281,25 +314,30 @@ export default {
     justify-content: space-between;
     padding-right: 10px;
 }
-.title-description:hover{
+
+.title-description:hover {
     color: #00a470;
     border-color: #00a470;
 }
-.description-open{
-    border-color:#00442F;
+
+.description-open {
+    border-color: #00442F;
     color: #00442F;
     font-size: 22px;
     font-weight: bold;
 }
-.text-description{
+
+.text-description {
     color: black;
     font-size: 16px;
     font-family: sans-serif;
     text-align: left;
 }
-.text-description p{
+
+.text-description p {
     padding: 5px 0;
 }
+
 /* right */
 .descricao {
     width: 100%;
@@ -355,9 +393,11 @@ export default {
     height: 50px;
     cursor: pointer;
 }
-.btn-buy:hover{
+
+.btn-buy:hover {
     background-color: #00c587;
 }
+
 .box-cupom {
     display: flex;
     justify-content: space-between;
@@ -410,4 +450,5 @@ export default {
         max-width: none;
         min-width: 0;
     }
-}</style>
+}
+</style>
