@@ -44,5 +44,9 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-
+  router.beforeEach((to, from, next) => {
+    // Rola para o topo da página ao navegar para uma nova rota
+    window.scrollTo(0, 0)
+    next()
+  })
 export default router

@@ -46,7 +46,7 @@ class PerfumeDB{
                 title:'Quasar',
                 slug:'Quasar-Vision-Desodorante-Colônia-100ml',
                 text_link:'Quasar Vision Desodorante Colônia 100ml',
-                price:'115,90',
+                price:'115,93',
                 max_price:'130,00',
                 desc_item:'Quasar Vision traz Frescor clássico que te incentiva no dia a dia a correr atrás dos seus objetivos e ir além.',
                 front_img:'https://res.cloudinary.com/beleza-na-web/image/upload/w_500,f_auto,fl_progressive,q_auto:eco/v1/imagens/product/B50662/42b88ff2-868a-4670-88e6-c8023fad1bfa-bot-50662-quasar-vision-colonia-frontal-01.jpg',

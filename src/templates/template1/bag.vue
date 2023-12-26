@@ -2,7 +2,7 @@
     <section class="bag">
         <div class="left">
             <div class="card-01">
-
+                
                 <div class="box-item-padding">
 
                     <!-- <div class="box-item">
@@ -31,6 +31,8 @@
                         </div>
                     </div> -->
 
+                    <emptyBag v-if="itens.length === 0"/>
+
                     <div class="box-item" v-for="(info, index) in carrinho" :key="info.id">
                         <router-link :to="'produto/' + info.slug" class="link-product">
                             <div class="product">
@@ -45,12 +47,12 @@
                         </router-link>
                         <div class="value-box">
                             <div class="number-itens">
-                                <!-- <select v-model="itens[index].quantity" @change="updateQt(info.id, +$event.target.value)" :key="info.id">
+                                <select v-model="itens[index].quantity" @change="updateQt(info.id, +$event.target.value)" :key="info.id">
                                     <option v-for="number in Array.from({ length: 10 }, (_, index) => index + 1)"
-                                        :value="number">{{ number }}</option> -->
+                                        :value="number">{{ number }}</option>
                                     <!-- <option :value="2">2</option>
                                     <option :value="3">3</option> -->
-                                <!-- </select> -->
+                                </select>
                                 <button @click="removeItem(info.id)">Remover</button>
                             </div>
                             <div class="value-item">
@@ -71,16 +73,16 @@
                     </router-link>
                     <div class="inner-cart">
                         <div class="number-itens">
-                            <span>Produtos:(4 itens)</span>
+                            <span>Produtos:({{ totalItens }})</span>
                         </div>
                         <div class="total-itens">
                             <!-- <span class="max-price" style="margin-right: 10px;">R$376,00</span> -->
-                            <span class="price">{{ total }}</span>
+                            <span class="price">{{ totalStr }}</span>
                         </div>
                     </div>
                     <div class="total">
                         <span class="subtotal">Subtotal:</span>
-                        <span class="final-value">R${{ total }}</span>
+                        <span class="final-value">R${{ totalStr }}</span>
                     </div>
                     <div class="cupom-discont">
                         <h1>Tem cumpom de desconto?</h1>
@@ -96,14 +98,18 @@
 </template>
 <script>
 import perfumesServices from '../../../services/perfumes.js';
+import emptyBag from '@/components/template1/emptyBag.vue';
 const PerfumesServices = new perfumesServices();
 export default {
+    components: { emptyBag },
     data() {
         return {
             itens: [],
             carrinho: [],
             unit: [],
-            total: 0
+            totalItens: 0,
+            total: 0,
+            totalStr: String,
         }
     },
     created() {
@@ -113,7 +119,6 @@ export default {
             let perfume = PerfumesServices.getById(el.id);
             this.carrinho.push(perfume);
         });
-        console.log(this.carrinho);
         this.totalCalculate();
     },
     methods: {
@@ -123,27 +128,35 @@ export default {
                 this.carrinho.splice(toRemove,1);
                 this.itens.splice(toRemove,1);
             }
-            console.log(this.carrinho);
             this.totalCalculate();
             this.saveCart();
         },
         updateQt(id, qt) {
             const item = this.itens.find(item => item.id === id);
-            item.quantity = qt;
-            this.saveCart();
-            this.totalCalculate();
+            if(item !== undefined){
+                item.quantity = qt;
+                this.saveCart();
+                this.totalCalculate();
+            }
         },
         saveCart() {
             localStorage.setItem('cart', JSON.stringify(this.itens));
         },
         totalCalculate() {
             this.total = 0;
+            this.totalItens = 0;
             if(this.itens.length !== 0){
                 this.itens.forEach(el => {
                     let perfume = PerfumesServices.getById(el.id);
                     const format = parseFloat(perfume.price.replace(',', '.'));
+                    this.totalItens += el.quantity;
                     this.total += format * el.quantity;
+                    this.total = Number(this.total.toFixed(2));
+                    this.totalStr = this.total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 })
+            }else{
+                this.total = 0;
+                this.totalStr = 0;
             }
         }
     }
