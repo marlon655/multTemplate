@@ -1,94 +1,68 @@
 <template>
     <section class="bag">
-        <div class="left">
-            <div class="card-01">
-                
-                <div class="box-item-padding">
+        <emptyBag v-if="itens.length === 0"/>
 
-                    <!-- <div class="box-item">
-                        <router-link to="/" class="link-product">
-                        <div class="product">
-                            <div class="box-img">
-                                <img src="https://res.cloudinary.com/beleza-na-web/image/upload/w_500,f_auto,fl_progressive,q_auto:eco/v1/imagens/products/B48130/B48130_Malbec_Desodorante_Col%C3%B4nia_1.jpg">
-                            </div>
-                            <div class="description">
-                                <span>Malbec</span>
-                                <span>Magnetic Desodorante Colônia, 100ml</span>
-                            </div>
-                        </div>
-                        </router-link>
-                        <div class="number-itens">
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                            <button>Remover</button>
-                        </div>
-                        <div class="value-item">
-                            <span class="max-price">R$200,00</span>
-                            <span class="price">R$180,00</span>
-                        </div>
-                    </div> -->
-
-                    <emptyBag v-if="itens.length === 0"/>
-
-                    <div class="box-item" v-for="(info, index) in carrinho" :key="info.id">
-                        <router-link :to="'produto/' + info.slug" class="link-product">
-                            <div class="product">
-                                <div class="box-img">
-                                    <img :src="info.front_img">
+        <div class="contents" v-else>
+            <div class="left">
+                <div class="card-01">
+                    <div class="box-item-padding">
+                        <div class="box-item" v-for="(info, index) in carrinho" :key="info.id">
+                            <router-link :to="'produto/' + info.slug" class="link-product">
+                                <div class="product">
+                                    <div class="box-img">
+                                        <img :src="info.front_img">
+                                    </div>
+                                    <div class="description">
+                                        <span>{{ info.title }}</span>
+                                        <span>{{ info.text_link }}</span>
+                                    </div>
                                 </div>
-                                <div class="description">
-                                    <span>{{ info.title }}</span>
-                                    <span>{{ info.text_link }}</span>
-                                </div>
-                            </div>
-                        </router-link>
-                        <div class="value-box">
-                            <div class="number-itens">
-                                <select v-model="itens[index].quantity" @change="updateQt(info.id, +$event.target.value)" :key="info.id">
-                                    <option v-for="number in Array.from({ length: 10 }, (_, index) => index + 1)"
-                                        :value="number">{{ number }}</option>
-                                    <!-- <option :value="2">2</option>
+                            </router-link>
+                            <div class="value-box">
+                                <div class="number-itens">
+                                    <select v-model="itens[index].quantity"
+                                        @change="updateQt(info.id, +$event.target.value)" :key="info.id">
+                                        <option v-for="number in Array.from({ length: 10 }, (_, index) => index + 1)"
+                                            :value="number">{{ number }}</option>
+                                        <!-- <option :value="2">2</option>
                                     <option :value="3">3</option> -->
-                                </select>
-                                <button @click="removeItem(info.id)">Remover</button>
-                            </div>
-                            <div class="value-item">
-                                <span class="max-price">{{ info.max_price }}</span>
-                                <span class="price">{{ info.price }}</span>
+                                    </select>
+                                    <button @click="removeItem(info.id)">Remover</button>
+                                </div>
+                                <div class="value-item">
+                                    <span class="max-price">{{ info.max_price }}</span>
+                                    <span class="price">{{ info.price }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="right">
-            <div class="card-01">
-                <div class="inner-padding">
-                    <router-link to="">
-                        <button class="finaly">Finalizar compra</button>
-                    </router-link>
-                    <div class="inner-cart">
-                        <div class="number-itens">
-                            <span>Produtos:({{ totalItens }})</span>
+            <div class="right">
+                <div class="card-01">
+                    <div class="inner-padding">
+                        <router-link to="">
+                            <button class="finaly">Finalizar compra</button>
+                        </router-link>
+                        <div class="inner-cart">
+                            <div class="number-itens">
+                                <span>Produtos:({{ totalItens }})</span>
+                            </div>
+                            <div class="total-itens">
+                                <span class="price">{{ totalStr }}</span>
+                            </div>
                         </div>
-                        <div class="total-itens">
-                            <!-- <span class="max-price" style="margin-right: 10px;">R$376,00</span> -->
-                            <span class="price">{{ totalStr }}</span>
+                        <div class="total">
+                            <span class="subtotal">Subtotal:</span>
+                            <span class="final-value">R${{ totalStr }}</span>
                         </div>
-                    </div>
-                    <div class="total">
-                        <span class="subtotal">Subtotal:</span>
-                        <span class="final-value">R${{ totalStr }}</span>
-                    </div>
-                    <div class="cupom-discont">
-                        <h1>Tem cumpom de desconto?</h1>
-                        <div class="cupom-apply">
-                            <input type="text">
-                            <button>APLICAR</button>
+                        <div class="cupom-discont">
+                            <h1>Tem cumpom de desconto?</h1>
+                            <div class="cupom-apply">
+                                <input type="text">
+                                <button>APLICAR</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,6 +71,7 @@
     </section>
 </template>
 <script>
+import sharedModule from '../../sharedModule';
 import perfumesServices from '../../../services/perfumes.js';
 import emptyBag from '@/components/template1/emptyBag.vue';
 const PerfumesServices = new perfumesServices();
@@ -124,16 +99,16 @@ export default {
     methods: {
         removeItem(id) {
             let toRemove = this.itens.findIndex(item => item.id === id);
-            if(toRemove != -1){
-                this.carrinho.splice(toRemove,1);
-                this.itens.splice(toRemove,1);
+            if (toRemove != -1) {
+                this.carrinho.splice(toRemove, 1);
+                this.itens.splice(toRemove, 1);
             }
             this.totalCalculate();
             this.saveCart();
         },
         updateQt(id, qt) {
             const item = this.itens.find(item => item.id === id);
-            if(item !== undefined){
+            if (item !== undefined) {
                 item.quantity = qt;
                 this.saveCart();
                 this.totalCalculate();
@@ -145,16 +120,18 @@ export default {
         totalCalculate() {
             this.total = 0;
             this.totalItens = 0;
-            if(this.itens.length !== 0){
+            if (this.itens.length !== 0) {
                 this.itens.forEach(el => {
                     let perfume = PerfumesServices.getById(el.id);
                     const format = parseFloat(perfume.price.replace(',', '.'));
                     this.totalItens += el.quantity;
+                    sharedModule.itensInBag = this.totalItens;
                     this.total += format * el.quantity;
                     this.total = Number(this.total.toFixed(2));
                     this.totalStr = this.total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 })
-            }else{
+            } else {
+                sharedModule.itensInBag = 0;
                 this.total = 0;
                 this.totalStr = 0;
             }
@@ -168,7 +145,7 @@ export default {
     padding: 0;
     box-sizing: border-box;
 }
-
+.contents{ display: contents;}
 .bag {
     margin-top: 20px;
     width: 100%;
@@ -448,4 +425,5 @@ export default {
         width: 100%;
         display: block;
     }
-}</style>
+}
+</style>
