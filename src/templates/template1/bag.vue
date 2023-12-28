@@ -1,6 +1,6 @@
 <template>
     <section class="bag">
-        <emptyBag v-if="itens.length === 0"/>
+        <emptyBag v-if="itens.length === 0" />
 
         <div class="contents" v-else>
             <div class="left">
@@ -89,12 +89,14 @@ export default {
     },
     created() {
         const storage = localStorage.getItem('cart');
-        this.itens = JSON.parse(storage);
-        this.itens.forEach(el => {
-            let perfume = PerfumesServices.getById(el.id);
-            this.carrinho.push(perfume);
-        });
-        this.totalCalculate();
+        if (storage) {
+            this.itens = JSON.parse(storage);
+            this.itens.forEach(el => {
+                let perfume = PerfumesServices.getById(el.id);
+                this.carrinho.push(perfume);
+            });
+            this.totalCalculate();
+        }
     },
     methods: {
         removeItem(id) {
@@ -145,7 +147,11 @@ export default {
     padding: 0;
     box-sizing: border-box;
 }
-.contents{ display: contents;}
+
+.contents {
+    display: contents;
+}
+
 .bag {
     margin-top: 20px;
     width: 100%;
@@ -425,5 +431,4 @@ export default {
         width: 100%;
         display: block;
     }
-}
-</style>
+}</style>

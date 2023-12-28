@@ -10,7 +10,7 @@
         </div>
 
         <div class="search">
-          <input type="text" placeholder="Faça sua pesquisa...">
+          <input type="text" placeholder="Oque você procura hoje?">
           <button class="btn-search">
             <font-awesome-icon :icon="['fas', 'magnifying-glass']" class="lupa" />
           </button>
@@ -23,7 +23,6 @@
           </button>
 
           <router-link to="/sacola">
-
             <button class="cart">
               <span class="qt-in-cart">{{ sharedModule }}</span>
               <font-awesome-icon :icon="['fas', 'cart-shopping']" />
@@ -33,13 +32,37 @@
 
       </div>
 
-      <div class="header-mobile">
+      <div class="is-mobile">
+        <div class="top-header">
+          <button class="menu-btn">
+            <font-awesome-icon :icon="['fas', 'bars']" />
+          </button>
 
+          <div class="box-logo">
+            <router-link to="/">
+              <img src="@/assets/templateOne.png">
+            </router-link>
+          </div>
+
+          <router-link to="/sacola">
+            <button class="cart">
+              <span class="qt-in-cart">{{ sharedModule }}</span>
+              <font-awesome-icon :icon="['fas', 'cart-shopping']" />
+            </button>
+          </router-link>
+        </div>
+
+        <div class="search">
+          <input type="text" placeholder="Oque você procura hoje?">
+          <button class="btn-search">
+            <font-awesome-icon :icon="['fas', 'magnifying-glass']" class="lupa" />
+          </button>
+        </div>
       </div>
 
     </div>
   </div>
-  <nav>
+  <nav class="menu-desktop">
     <div class="center">
       <router-link to="/">Home</router-link>
       <router-link to="/sobre">Sobre</router-link>
@@ -110,6 +133,7 @@ export default {
 .box-logo img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: contain;
 }
 
@@ -124,7 +148,7 @@ export default {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 350px;
+  max-width: 500px;
 }
 
 .search input[type='text'] {
@@ -132,11 +156,10 @@ export default {
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
   padding-left: 5px;
-  max-width: 300px;
   width: 100%;
   height: 40px;
-  font-size: 16px;
-  color: #ccc;
+  font-size: 18px;
+  color: #000000;
   outline: none;
 }
 
@@ -234,10 +257,65 @@ nav a {
 }
 
 /* MOBILE-HEADER */
+.is-mobile {
+  display: none;
+  /* justify-content: space-between;
+  align-items: center; */
+}
+
+.top-header {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-btn {
+  background: transparent;
+  width: 32px;
+  height: 32px;
+  border: none;
+  font-size: 32px;
+  color: #00442F;
+}
 
 @media screen and (max-width: 768px) {
+  .menu-desktop {
+    display: none;
+  }
+
   .header-desktop {
     display: none;
+  }
+
+  .is-mobile {
+    display: block;
+  }
+
+  .top-header {
+    display: flex;
+  }
+
+  .box-logo {
+    height: 100%;
+    width: 150px;
+  }
+
+  .search {
+    padding: 0;
+    padding-top: 10px;
+    max-width: revert;
+    width: 100%;
+  }
+
+  .cart {
+    display: flex;
+    font-size: 26px;
+    min-width: 38px;
+    min-height: 38px;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: space-around;
   }
 }
 </style>
