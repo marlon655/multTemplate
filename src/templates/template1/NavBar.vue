@@ -24,11 +24,11 @@
 
           <router-link to="/sacola">
 
-          <button class="cart">
-            <span class="qt-in-cart">{{ sharedModule }}</span>
-            <font-awesome-icon :icon="['fas', 'cart-shopping']" />
-          </button>
-        </router-link>
+            <button class="cart">
+              <span class="qt-in-cart">{{ sharedModule }}</span>
+              <font-awesome-icon :icon="['fas', 'cart-shopping']" />
+            </button>
+          </router-link>
         </div>
 
       </div>
@@ -63,17 +63,19 @@ export default {
       totalItens: 0,
     }
   },
-  created(){
+  created() {
     const storage = localStorage.getItem('cart');
     this.totalItens = 0;
-        this.itens = JSON.parse(storage);
-        this.itens.forEach(el => {
-          this.totalItens += el.quantity;
-        });
-        sharedModule.itensInBag = this.totalItens;
+    if (storage) {
+      this.itens = JSON.parse(storage);
+      this.itens.forEach(el => {
+        this.totalItens += el.quantity;
+      });
+      sharedModule.itensInBag = this.totalItens;
+    }
   },
-  computed:{
-    sharedModule(){
+  computed: {
+    sharedModule() {
       return sharedModule.itensInBag;
     }
   }
